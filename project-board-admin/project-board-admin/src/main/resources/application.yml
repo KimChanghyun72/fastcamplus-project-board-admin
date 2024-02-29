@@ -1,0 +1,78 @@
+debug: false
+management.endpoints.web.exposure.include: "*"  # spring actuator
+server.port: 8081
+
+logging:
+  level:
+    com.fastcampus.projectboardadmin: debug
+    org.springframework.web.servlet: debug
+    org.hibernate.type.descriptor.sql.BasicBinder: trace
+
+spring:
+  devtools.livereload.port: 35730
+  datasource:
+    #driver-class-name: org.postgresql.Driver
+    url: ${LOCAL_DB_URL}
+    username: ${LOCAL_DB_USERNAME}
+    password: ${LOCAL_DB_PASSWORD}
+    #url: jdbc:postgresql://localhost:5432/board
+    #username: chris
+    #password: 1q2w3e4r
+    ##   mariaDB Connection info
+    driver-class-name: org.mariadb.jdbc.Driver
+  #    url: jdbc:mariadb://localhost:3306/bootex
+  #    username: bootuser
+  #    password: bootuser
+  ##   H2DB Connection info
+  #    url: jdbc:h2:mem:testdb
+  #    username: sa
+  #    driver-class-name: org.h2.Driver
+  jpa:
+    open-in-view: false
+    defer-datasource-initialization: true
+    hibernate.ddl-auto: create
+    #open-in-view: false
+    show-sql: true
+    # 내가 사용하는 구현체 전용으로 사용하고싶은 properties를 사용하고 싶을 때 사용.
+    properties:
+      hibernate.format_sql: true
+      hibernate.default_batch_fetch_size: 100
+      database-platform: org.hibernate.dialect.MySQLDialect
+  h2.console.enabled: false
+  sql.init.mode: always
+#  data.rest:
+#    base-path: /api
+#    detection-strategy: annotated
+#  thymeleaf3:
+#    decoupled-logic: true
+  security:
+    oauth2:
+      client:
+        registration:
+          kakao:
+            client-id: ${KAKAO_OAUTH_CLIENT_ID}
+            client-secret: ${KAKAO_OAUTH_CLIENT_SECRET}
+            authorization-grant-type: authorization_code
+            redirect-uri: "{baseUrl}/login/oauth2/code/kakao"
+            #            client-authentication-method: POST
+            client-authentication-method: none
+
+            response-type: code
+        provider:
+          kakao:
+            authorization-uri: https://kauth.kakao.com/oauth/authorize
+            token-uri: https://kauth.kakao.com/oauth/token
+            user-info-uri: https://kapi.kakao.com/v2/user/me
+            user-name-attribute: id
+
+
+---
+# yaml 파일은 --- 를 기준으로 새로운 document를 생성할 수 있다.
+#
+spring:
+  config.activate.on-profile: test
+  datasource:
+    url: jdbc:h2:mem:testdb
+    driverClassName: org.h2.Driver
+  #  sql.init.mode: always
+  test.database.replace: none
