@@ -35,7 +35,7 @@ class ArticleManagementControllerTest {
                 .andExpect(status().is2xxSuccessful())
                 //.andExpect(content().contentType(MediaType.TEXT_HTML))
                 .andExpect(content().contentTypeCompatibleWith(MediaType.TEXT_HTML))
-                .andExpect(view().name("management/articles"));
+                .andExpect(view().name("admin/articles"));
 
         // Then
 
