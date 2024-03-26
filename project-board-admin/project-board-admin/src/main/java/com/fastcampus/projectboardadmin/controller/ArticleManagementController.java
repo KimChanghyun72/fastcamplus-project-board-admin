@@ -19,6 +19,6 @@ public class ArticleManagementController {
             @PageableDefault(size = 10, sort = "createdAt", direction = Sort.Direction.DESC) Pageable pageable,
             Model model
     ) {
-        return "admin/articles";
+        return "management/articles";
     }
 }

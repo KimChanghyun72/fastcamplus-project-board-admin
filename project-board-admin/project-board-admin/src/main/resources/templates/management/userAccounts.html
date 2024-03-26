@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head id="layout-head">
+    <meta charset="UTF-8">
+    <title>공통 템플릿</title>
+</head>
+<body class="hold-transition sidebar-mini">
+<div class="wrapper">
+    <header id="layout-header">헤더 삽입부</header>
+    <aside id="layout-left-aside">왼쪽 사이드 바 삽입부</aside>
+
+    <!-- Main content -->
+    <main id="layout-main">
+        <table id="main-table" class="table table-bordered table-striped">
+            <thead>
+            <tr>
+                <th>유저 ID</th>
+                <th>닉네임</th>
+                <th>이메일</th>
+                <th>메모</th>
+                <th>작성자</th>
+                <th>작성일시</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>uno</td>
+                <td>Uno</td>
+                <td>uno@email.com</td>
+                <td>This is memo.</td>
+                <td>Uno</td>
+                <td><time datetime="2022-01-01T00:00:00">2022-01-01 00:00:00</time></td>
+            </tr>
+            </tbody>
+            <tfoot>
+            <tr>
+                <th>유저 ID</th>
+                <th>닉네임</th>
+                <th>이메일</th>
+                <th>메모</th>
+                <th>작성자</th>
+                <th>작성일시</th>
+            </tr>
+            </tfoot>
+        </table>
+    </main>
+    <!-- /.content -->
+
+    <aside id="layout-right-aside">오른쪽 사이드 바 삽입부</aside>
+    <footer id="layout-footer">푸터 삽입부</footer>
+</div>
+
+<!--/* REQUIRED SCRIPTS */-->
+<script id="layout-scripts">/* 공통 스크립트 삽입부 */</script>
+
+<!--/* 페이지 전용 스크립트 */-->
+</body>
+</html>
