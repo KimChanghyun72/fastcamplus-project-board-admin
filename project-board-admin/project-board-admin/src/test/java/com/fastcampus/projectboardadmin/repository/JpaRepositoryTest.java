@@ -25,8 +25,8 @@ class JpaRepositoryTest {
 
     private final AdminAccountRepository adminAccountRepository;
 
-    public JpaRepositoryTest(@Autowired AdminAccountRepository userAccountRepository) {
-        this.adminAccountRepository = userAccountRepository;
+    public JpaRepositoryTest(@Autowired AdminAccountRepository adminAccountRepository) {
+        this.adminAccountRepository = adminAccountRepository;
     }
 
     @DisplayName("회원 정보 select 테스트")
@@ -45,7 +45,7 @@ class JpaRepositoryTest {
 
     @DisplayName("회원 정보 insert 테스트")
     @Test
-    public void givenUserAccount_whenInserting_thenWorksFine() {
+    public void givenAdminAccount_whenInserting_thenWorksFine() {
         // Given
         long previousCount = adminAccountRepository.count();
         AdminAccount userAccount = AdminAccount.of("test", "pw", Set.of(RoleType.DEVELOPER), null, null, null);
@@ -59,7 +59,7 @@ class JpaRepositoryTest {
 
     @DisplayName("회원 정보 update 테스트")
     @Test
-    public void givenUserAccountAndRoleType_whenUpdating_thenWorksFine() {
+    public void givenAdminAccountAndRoleType_whenUpdating_thenWorksFine() {
         // Given
         AdminAccount userAccount = adminAccountRepository.getReferenceById("uno");
         userAccount.addRoleType(RoleType.DEVELOPER);
@@ -78,13 +78,13 @@ class JpaRepositoryTest {
 
     @DisplayName("회원 정보 delete 테스트")
     @Test
-    public void givenUserAccount_whenDeleting_thenWorksFine() {
+    public void givenAdminAccount_whenDeleting_thenWorksFine() {
         // Given
         long previousCount = adminAccountRepository.count();
-        AdminAccount userAccount = adminAccountRepository.getReferenceById("uno");
+        AdminAccount adminAccount = adminAccountRepository.getReferenceById("uno");
 
         // When
-        adminAccountRepository.delete(userAccount);
+        adminAccountRepository.delete(adminAccount);
 
         // Then
         assertThat(adminAccountRepository.count()).isEqualTo(previousCount - 1);
