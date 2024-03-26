@@ -4,7 +4,10 @@
   <component name="GradleSettings">
     <option name="linkedExternalProjectsSettings">
       <GradleProjectSettings>
+        <option name="delegatedBuild" value="false" />
+        <option name="testRunner" value="PLATFORM" />
         <option name="externalProjectPath" value="$PROJECT_DIR$/fastcampus-project-board/project-board" />
+        <option name="gradleHome" value="$PROJECT_DIR$/../../../../DevTool/Gradle/gradle-8.5" />
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$/fastcampus-project-board/project-board" />
@@ -13,6 +16,7 @@
       </GradleProjectSettings>
       <GradleProjectSettings>
         <option name="externalProjectPath" value="$PROJECT_DIR$/project-board-admin/project-board-admin" />
+        <option name="gradleHome" value="$PROJECT_DIR$/../../../../DevTool/Gradle/gradle-8.5" />
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$/project-board-admin/project-board-admin" />

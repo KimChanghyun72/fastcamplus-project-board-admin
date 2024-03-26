@@ -7,6 +7,7 @@ logging:
     com.fastcampus.projectboardadmin: debug
     org.springframework.web.servlet: debug
     org.hibernate.type.descriptor.sql.BasicBinder: trace
+    org.springframework.web.client.RestTemplate: debug
 
 spring:
   devtools.livereload.port: 35730
@@ -43,8 +44,8 @@ spring:
 #  data.rest:
 #    base-path: /api
 #    detection-strategy: annotated
-#  thymeleaf3:
-#    decoupled-logic: true
+  thymeleaf3:
+    decoupled-logic: true
   security:
     oauth2:
       client:
@@ -65,6 +66,7 @@ spring:
             user-info-uri: https://kapi.kakao.com/v2/user/me
             user-name-attribute: id
 
+project.board.url: http://localhost:8080
 
 ---
 # yaml 파일은 --- 를 기준으로 새로운 document를 생성할 수 있다.
@@ -76,3 +78,4 @@ spring:
     driverClassName: org.h2.Driver
   #  sql.init.mode: always
   test.database.replace: none
+  h2.console.enabled: false
