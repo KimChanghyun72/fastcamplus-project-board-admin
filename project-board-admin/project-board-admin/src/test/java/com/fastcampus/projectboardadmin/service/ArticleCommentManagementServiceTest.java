@@ -137,7 +137,7 @@ class ArticleCommentManagementServiceTest {
             // Given
             Long articleCommentId = 1L;
             server
-                    .expect(requestTo(projectProperties.board().url() + "/api/articleComments" + articleCommentId))
+                    .expect(requestTo(projectProperties.board().url() + "/api/articleComments/" + articleCommentId))
                     .andExpect(method(HttpMethod.DELETE))
                     .andRespond(withSuccess());
 

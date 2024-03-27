@@ -13,6 +13,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Import;
 import org.springframework.http.MediaType;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.time.LocalDateTime;
@@ -38,6 +39,7 @@ class ArticleCommentManagementControllerTest {
         this.mvc = mvc;
     }
 
+    @WithMockUser(username = "tester", roles = "USER")
     @DisplayName("[view][GET] 댓글 관리 페이지 - 정상 호출")
     @Test
     void givenNothing_whenRequestArticleCommentMngView_thenReturns() throws Exception {
@@ -48,7 +50,7 @@ class ArticleCommentManagementControllerTest {
         mvc.perform(get("/management/article-comments"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.TEXT_HTML))
-                .andExpect(view().name("management/articleComments"))
+                .andExpect(view().name("management/article-comments"))
                 .andExpect(model().attribute("comments", List.of()));
 
         // Then
@@ -56,6 +58,7 @@ class ArticleCommentManagementControllerTest {
 
     }
 
+    @WithMockUser(username = "tester", roles = "USER")
     @DisplayName("댓글 1개 호출")
     @Test
     void givenCommentId_whenRequestingArticleComment_thenReturnsArticleComment() throws Exception {
@@ -74,6 +77,7 @@ class ArticleCommentManagementControllerTest {
         then(articleCommentManagementService).should().getArticleComment(articleCommentId);
     }
 
+    @WithMockUser(username = "tester", roles = "MANAGER")
     @DisplayName("[view][POST] 댓글 삭제 - 정상 호출")
     @Test
     void givenCommentId_whenRequestingDeletion_thenRedirectsToArticleCommentManagementView() throws Exception {
@@ -86,7 +90,7 @@ class ArticleCommentManagementControllerTest {
                 .with(csrf())
         )
                 .andExpect(status().is3xxRedirection())
-                .andExpect(view().name("redirect://management/article-comments"))
+                .andExpect(view().name("redirect:/management/article-comments"))
                 .andExpect(redirectedUrl("/management/article-comments"));
         then(articleCommentManagementService).should().deleteArticleComment(articleCommentId);
 
