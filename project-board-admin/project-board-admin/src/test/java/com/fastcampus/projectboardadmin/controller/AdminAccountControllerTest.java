@@ -82,7 +82,7 @@ class AdminAccountControllerTest {
     @WithMockUser(username = "tester", roles = "MANAGER")
     @DisplayName("[data][DELETE] 어드민 회원 삭제 - 정상 호출")
     @Test
-    void givenAuthorizedUser_whenDeletingAdminMember_thenDeletesAdminMember() {
+    void givenAuthorizedUser_whenDeletingAdminMember_thenDeletesAdminMember() throws Exception {
         // Given
         String username = "uno";
         willDoNothing().given(adminAccountService).deleteUser(username);
