@@ -1,6 +1,7 @@
 package com.fastcampus.projectboardadmin.controller;
 
 import com.fastcampus.projectboardadmin.config.SecurityConfig;
+import com.fastcampus.projectboardadmin.config.TestSecurityConfig;
 import com.fastcampus.projectboardadmin.domain.constant.RoleType;
 import com.fastcampus.projectboardadmin.dto.ArticleDto;
 import com.fastcampus.projectboardadmin.dto.UserAccountDto;
@@ -12,6 +13,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Import;
 import org.springframework.http.MediaType;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.time.LocalDateTime;
@@ -25,7 +27,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @DisplayName("View 컨트롤러 - 게시글 관리")
-@Import(SecurityConfig.class)
+@Import(TestSecurityConfig.class)
 @WebMvcTest(ArticleManagementController.class)
 class ArticleManagementControllerTest {
 
@@ -37,6 +39,7 @@ class ArticleManagementControllerTest {
         this.mvc = mvc;
     }
 
+    @WithMockUser(username = "tester", roles = "USER")
     @DisplayName("[view][GET] 게시글 관리 페이지 - 정상 호출")
     @Test
     void givenNothing_whenRequestArticleManagementView_thenReturns() throws Exception {
@@ -57,6 +60,7 @@ class ArticleManagementControllerTest {
         // Then
     }
 
+    @WithMockUser(username = "tester", roles = "USER")
     @DisplayName("[data][GET] 게시글 1개 - 정상 호출")
     @Test
     void givenArticleId_whenRequestingArticle_thenReturnsArticle() throws Exception {
@@ -76,6 +80,7 @@ class ArticleManagementControllerTest {
         then(articleManagementService).should().getArticle(articleId);
     }
 
+    @WithMockUser(username = "tester", roles = "MANAGER")
     @DisplayName("[view][POST] 게시글 삭제 - 정상 호출")
     @Test
     void givenArticleId_whenRequestingDeletion_thenRedirectsToArticleManagementView() throws Exception {
@@ -111,8 +116,6 @@ class ArticleManagementControllerTest {
     private UserAccountDto createUserAccountDto() {
         return UserAccountDto.of(
                 "unoTest",
-                "pw",
-                Set.of(RoleType.ADMIN),
                 "uno-test@email.com",
                 "uno-test",
                 "test memo"
