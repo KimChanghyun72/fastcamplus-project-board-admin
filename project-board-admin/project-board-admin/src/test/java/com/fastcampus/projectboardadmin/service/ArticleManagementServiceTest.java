@@ -55,11 +55,14 @@ class ArticleManagementServiceTest {
         @Test
         void given_when_then() {
             // Given
+            //Long articleId = 1L;
 
             // When
+            //ArticleDto resultOne = sut.getArticle(articleId);
             List<ArticleDto> result = sut.getArticles();
 
             // Then
+            //System.out.println(resultOne);
             // 응답되는지만 확인하면 되므로 간단히 첫번째 결과 하나만 추출해서 본다.
             System.out.println(result.stream().findFirst());
             assertThat(result).isNotNull();
@@ -128,7 +131,7 @@ class ArticleManagementServiceTest {
             Long articleId = 1L;
             ArticleDto expectedArticle = createArticleDto("게시판", "글");
             server
-                    .expect(requestTo(projectProperties.board().url() + "/api/articles/" + articleId))
+                    .expect(requestTo(projectProperties.board().url() + "/api/articles/" + articleId + "?projection=withUserAccount"))
                     .andRespond(withSuccess(
                             mapper.writeValueAsString(expectedArticle),
                             MediaType.APPLICATION_JSON

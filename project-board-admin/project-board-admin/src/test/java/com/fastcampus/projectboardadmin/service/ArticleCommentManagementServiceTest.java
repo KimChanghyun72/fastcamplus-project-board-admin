@@ -49,8 +49,10 @@ class ArticleCommentManagementServiceTest {
         @Test
         void given_when_then() {
             // Given
+            // Long commentId = 1L;
 
             // When
+            //ArticleCommentDto resultOne = sut.getArticleComment(commentId);
             List<ArticleCommentDto> comments = sut.getArticleComments();
 
             // Then
@@ -114,7 +116,7 @@ class ArticleCommentManagementServiceTest {
             Long articleCommentId = 1L;
             ArticleCommentDto expectedComment = createArticleCommentDto("댓글");
             server
-                    .expect(requestTo(projectProperties.board().url() + "/api/articleComments/" + articleCommentId))
+                    .expect(requestTo(projectProperties.board().url() + "/api/articleComments/" + articleCommentId + "?projection=withUserAccount"))
                     .andRespond(withSuccess(
                             mapper.writeValueAsString(expectedComment),
                             MediaType.APPLICATION_JSON

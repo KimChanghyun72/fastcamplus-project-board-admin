@@ -33,6 +33,7 @@ public class ArticleCommentManagementService {
 
     public ArticleCommentDto getArticleComment(Long commentId) {
         URI uri = UriComponentsBuilder.fromHttpUrl(projectProperties.board().url()  + "/api/articleComments/" + commentId)
+                .queryParam("projection", "withUserAccount")
                 .build()
                 .toUri();
         ArticleCommentDto response = restTemplate.getForObject(uri, ArticleCommentDto.class);
