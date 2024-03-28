@@ -41,7 +41,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
                         .requestMatchers(HttpMethod.POST, "/**").hasAnyRole(rolesAboveManager)
-                        .requestMatchers(HttpMethod.DELETE, "/**").hasAnyRole(rolesAboveManager)
+                        .requestMatchers(HttpMethod.DELETE, "/**").hasAnyRole(rolesAboveManager)        // 데이터 변조 작업에는 추가적인 권한 필요.
                         .anyRequest().authenticated()
                 )
                 .formLogin(withDefaults())
