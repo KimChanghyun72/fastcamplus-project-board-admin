@@ -10,6 +10,5 @@
   <attr sel="#main-header-title" th:text="'에러 페이지'" />
   <attr sel="#breadcrumb-home" th:href="@{/}" th:text="'홈'" />
   <attr sel="#breadcrumb-current-page" th:text="'에러 페이지'" />
-  <attr sel="#error-status" th:text="${#response.status}" />
   <attr sel="#error-message" th:text="'알 수 없는 에러가 발생했어요!'" />
 </thlogic>
