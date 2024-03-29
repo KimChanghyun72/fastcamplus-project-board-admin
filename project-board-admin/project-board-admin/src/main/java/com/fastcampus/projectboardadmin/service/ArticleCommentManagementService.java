@@ -1,5 +1,6 @@
 package com.fastcampus.projectboardadmin.service;
 
+import com.fastcampus.projectboardadmin.dto.AdminAccountDto;
 import com.fastcampus.projectboardadmin.dto.ArticleCommentDto;
 import com.fastcampus.projectboardadmin.dto.properties.ProjectProperties;
 import com.fastcampus.projectboardadmin.dto.response.ArticleCommentClientResponse;
@@ -27,7 +28,6 @@ public class ArticleCommentManagementService {
                 .build()
                 .toUri();
         ArticleCommentClientResponse response = restTemplate.getForObject(uri, ArticleCommentClientResponse.class); // jackson이 직렬화 역직렬화.
-
         return Optional.ofNullable(response).orElseGet(ArticleCommentClientResponse::empty).articleComments();
     }
 
