@@ -6,7 +6,8 @@ logging:
   level:
     com.fastcampus.projectboardadmin: debug
     org.springframework.web.servlet: debug
-    org.hibernate.type.descriptor.sql.BasicBinder: trace
+    org.hibernate.orm.jdbc.bind: trace
+#    org.hibernate.type.descriptor.sql.BasicBinder: trace
     org.springframework.web.client.RestTemplate: debug
 
 spring:

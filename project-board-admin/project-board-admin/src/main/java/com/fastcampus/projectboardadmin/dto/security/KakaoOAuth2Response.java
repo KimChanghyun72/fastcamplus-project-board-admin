@@ -1,5 +1,6 @@
 package com.fastcampus.projectboardadmin.dto.security;
 
+import java.io.UnsupportedEncodingException;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
@@ -26,7 +27,23 @@ public record KakaoOAuth2Response(
 
         public record Profile(String nickname) {
             public static Profile from(Map<String, Object> attributes) {
-                return new Profile(String.valueOf(attributes.get("nickname")));
+
+                String nickname = String.valueOf(attributes.get("nickname"));
+
+                String[] charSet = {"utf-8", "euc-kr", "ksc5601", "iso-8859-1", "x-windows-949", "utf-16", "ms949"};
+                System.out.println("[response_nickname] " + nickname);
+                for(int i = 0; i<charSet.length; i++){
+                    for(int j = 0; j<charSet.length; j++){
+                        try{
+                            System.out.println("[" + charSet[i] + "," + charSet[j] + "]" + new String(nickname.getBytes(charSet[i]), charSet[j]));
+                        } catch (UnsupportedEncodingException e){
+                            e.printStackTrace();
+                        }
+                    }
+                }
+
+                return new Profile(nickname);
+
             }
         }
 
